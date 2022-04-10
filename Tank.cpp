@@ -1,8 +1,10 @@
 
 #include <iostream>
-
 #include "Tank.h"
 #include "MyTools.h"
+#include <thread>
+#include <chrono>
+#include <future>
 
 using namespace std;
 using namespace MyTools;
@@ -41,4 +43,22 @@ void Tank::Draw() const
 	cout << "    #####";
 	GotoXY(x,y);
 	cout << " ###########";
+	
+	future<void> th(async(launch::async, &Tank::Tank_Messsage, this));
 }
+
+void Tank::Tank_Messsage() const {
+	int x = rand() % 5;
+	pMediator->Message(messages[x]);
+	//std::this_thread::sleep_for(3000ms);
+}
+
+Tank::Tank() {
+	messages.push_back("I'll kill you");
+	messages.push_back("I'll find you");
+	messages.push_back("I'll shoot you");
+	messages.push_back("I'll burn you");
+	messages.push_back("I'll break you");
+}
+
+
