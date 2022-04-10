@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-
+#include <iostream>
 #include "GameObject.h"
 
 class LevelGUI : public GameObject {
@@ -15,7 +15,7 @@ public:
     
     inline uint16_t GetFinishX() const { return finishX; }
     inline void SetFinishX(uint16_t finishXN) { finishX = finishXN; }
-
+    void GetMessage(std::string message_get);
     void Draw() const override;
 
 private:

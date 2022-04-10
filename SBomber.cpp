@@ -23,12 +23,24 @@ SBomber::SBomber()
     score(0)
 {
     WriteToLog(string(__FUNCTION__) + " was invoked");
-
-    Plane* p = new Plane;
-    p->SetDirection(1, 0.1);
-    p->SetSpeed(4);
-    p->SetPos(5, 10);
-    vecDynamicObj.push_back(p);
+    srand(time(0));
+    int x = rand() % 3;
+    if (x == 1)
+    {
+        BigPlane* p = new BigPlane;
+        p->SetDirection(1, 0.1);
+        p->SetSpeed(4);
+        p->SetPos(5, 10);
+        vecDynamicObj.push_back(p);
+    }
+    else
+    {
+        ColorPlane* p = new ColorPlane;
+        p->SetDirection(1, 0.1);
+        p->SetSpeed(4);
+        p->SetPos(5, 10);
+        vecDynamicObj.push_back(p);
+    }
 
     LevelGUI* pGUI = new LevelGUI;
     pGUI->SetParam(passedTime, fps, bombsNumber, score);
